@@ -1,4 +1,5 @@
 import random as r
+import time as t
 punkte = 5
 print("Vítej v casinu")
 while True:
@@ -9,7 +10,7 @@ while True:
         reward = range-1
 
         if guess == number:
-            print("Gratulujeme, vyhrál jsi magický bodík")
+            print(f"Gratulujeme, vyhrál jsi {reward} magických bodíků")
             punkte += reward
         else:
             print("Bohužel jsi prohrál/a")
@@ -17,6 +18,7 @@ while True:
         print("Máš", punkte, "bodíků")
         if punkte <= 0:
             print("Došly ti peníze, bohužel končíš")
+            t.sleep(1.5)
             break
     except ValueError:
         print("Zadaná hodnota není číselná")
