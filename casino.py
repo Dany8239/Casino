@@ -13,7 +13,7 @@ while True:
             print(f"Gratulujeme, vyhrál jsi {reward} magických bodíků")
             punkte += reward
         else:
-            print("Bohužel jsi prohrál/a")
+            print(f"Bohužel jsi prohrál/a, počítač vybral číslo {number}")
             punkte -= 1
         print("Máš", punkte, "bodíků")
         if punkte <= 0:
