@@ -1,6 +1,5 @@
 import random as r
 import time as t
-import math
 punkte = 5
 consecutive_wins = 0
 consecutive_losses = 0
