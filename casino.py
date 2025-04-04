@@ -38,7 +38,7 @@ while True:
             continue
         bet = int(input("Zadej svou sázku: "))
         while action_flag is False:
-            if bet < 0 or bet is float:
+            if bet < 0 or not isinstance(bet, int):
                 print("Zadej celé číslo větší než 0")
             else:
                 action_flag = True
