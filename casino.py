@@ -7,9 +7,11 @@ print("Vítej v casinu")
 def calculate_reward(consecutive_wins, consecutive_losses, range):
     basereward = range - 1
     if consecutive_wins > 3:
-       reward = basereward - (consecutive_wins * 0.5)
+       reward = basereward - (consecutive_wins * 0.2)
     elif consecutive_losses > 3:
         reward = basereward + (consecutive_losses * 0.5)
+    elif punkte < 2:
+        reward = basereward*1.5
     else:
         reward = basereward
     reward = round(reward)
@@ -44,6 +46,7 @@ while True:
             consecutive_wins = 0
         print("Máš", punkte, "bodíků")
         if punkte <= 0:
+            print("Počítač vybral číslo", number)
             print("Došly ti peníze, bohužel končíš")
             t.sleep(1.5)
             break
@@ -58,4 +61,3 @@ while True:
         print(f"\nNastala neočekávaná chyba: {e}")
         t.sleep(1.5)
         break
-
