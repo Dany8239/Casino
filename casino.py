@@ -1,10 +1,13 @@
 import random as r
 import time as t
+import math
 punkte = 5
 consecutive_wins = 0
 consecutive_losses = 0
 print("Vítej v casinu")
-def calculate_reward(consecutive_wins, consecutive_losses, range):
+def calculate_reward(consecutive_wins, consecutive_losses, range, bet):
+    multiplier = math.log(bet)
+    multiplier = round(multiplier, 3)
     basereward = range - 1
     if consecutive_wins > 3:
        reward = basereward - (consecutive_wins * 0.2)
@@ -14,6 +17,11 @@ def calculate_reward(consecutive_wins, consecutive_losses, range):
         reward = basereward*1.5
     else:
         reward = basereward
+    if multiplier <= 1:
+        multiplier += 1
+    print(multiplier)
+    reward = reward * multiplier
+    
     reward = round(reward)
     if reward < 1:
         reward = 1
@@ -23,11 +31,18 @@ def calculate_reward(consecutive_wins, consecutive_losses, range):
 
 while True:
     try:
+        action_flag = False
         range = int(input("Jakou chceš mít horní hranici pro náhodné číslo? Čím vyšší rozdíl, tím vyšší odměna, minimum je 5: "))
         if range < 5:
             print("Hodnota musí být alespoň 5")
             continue
-        reward = calculate_reward(consecutive_wins, consecutive_losses, range)
+        bet = int(input("Zadej svou sázku: "))
+        while action_flag is False:
+            if bet < 0 or bet is float:
+                print("Zadej celé číslo větší než 0")
+            else:
+                action_flag = True
+        reward = calculate_reward(consecutive_wins, consecutive_losses, range, bet)
         confirm = input(f"Momentální odměna je: {reward} magických bodíků. Chceš pokračovat? (a/n): ").lower()
         if confirm != "a":
             continue
@@ -41,7 +56,7 @@ while True:
             consecutive_losses = 0
         else:
             print(f"Bohužel jsi prohrál/a, počítač vybral číslo {number}")
-            punkte -= 1
+            punkte -= bet
             consecutive_losses += 1
             consecutive_wins = 0
         print("Máš", punkte, "bodíků")
