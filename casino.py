@@ -12,12 +12,11 @@ def calculate_reward(consecutive_wins, consecutive_losses, range, bet):
     if consecutive_wins > 3:
        reward = basereward - (consecutive_wins * 0.2)
     elif consecutive_losses > 3:
-        reward = basereward + (consecutive_losses * 0.5)
+        reward = basereward + math.log(consecutive_losses + 1, 2)
     elif punkte < 2:
         reward = basereward*1.5
     else:
         reward = basereward
-    print(multiplier)
     reward = reward * multiplier
     
     reward = round(reward)
