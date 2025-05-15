@@ -6,7 +6,7 @@ consecutive_wins = 0
 consecutive_losses = 0
 print("Vítej v casinu")
 def calculate_reward(consecutive_wins, consecutive_losses, range, bet):
-    multiplier = multiplier = 1 + math.log(bet + 1, 10)
+    multiplier = 1 + math.log(bet + 1, 10)
     multiplier = round(multiplier, 3)
     basereward = range - 1
     if consecutive_wins > 3:
